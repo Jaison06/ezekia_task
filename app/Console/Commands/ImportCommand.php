@@ -7,21 +7,21 @@ use App\Models\Jobs;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 
-class FancyCommand extends Command
+class ImportCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'fancy:command';
+    protected $signature = 'import:command';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Import Command description';
 
     /**
      * Create a new command instance.
@@ -40,7 +40,6 @@ class FancyCommand extends Command
      */
     public function handle()
     {
-
         $csvFileName = "\csv\candidates.csv";
         if (($handle = fopen(storage_path() . $csvFileName, 'r')) !== false) {
             while (($data = fgetcsv($handle, 1000, ",")) !== false) {
