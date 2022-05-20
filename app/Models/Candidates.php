@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class eze_candidates extends Model
+class Candidates extends Model
 {
     use HasFactory;
-    protected $fillable = [
-        'first_name',
-        'last_name',
-        'email',            
-    ];
-}
+
+    public function jobs()
+    {
+        return $this->hasMany(jobs::class);
+    }
+    
+    }
