@@ -21,7 +21,7 @@ class FancyCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Test Command description';
 
     /**
      * Create a new command instance.
