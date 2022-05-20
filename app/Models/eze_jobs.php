@@ -13,4 +13,9 @@ class eze_jobs extends Model
         'job_title',
         'company_name',        
     ];
+
+    public function eze_candidates()
+    {
+        return $this->belongsTo(eze_candidates::class);
+    }
 }

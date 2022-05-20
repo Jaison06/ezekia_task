@@ -13,4 +13,9 @@ class eze_candidates extends Model
         'last_name',
         'email',            
     ];
+
+    public function eze_jobs()
+    {
+        return $this->hasMany(eze_jobs::class);
+    }
 }
