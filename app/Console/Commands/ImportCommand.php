@@ -40,35 +40,39 @@ class ImportCommand extends Command
      */
     public function handle()
     {
-        $csvFileName = "\csv\candidates.csv";
-        if (($handle = fopen(storage_path() . $csvFileName, 'r')) !== false) {
+       // Import candidate csv
+
+        $candidate_csv = "\csv\candidates.csv";
+        if (($handle = fopen(storage_path() . $candidate_csv, 'r')) !== false) {
             while (($data = fgetcsv($handle, 1000, ",")) !== false) {
                 $num = count($data);
                 $first_name = $data['1'];
                 $last_name = $data['2'];
                 $email = $data['3'];
 
+                // check already exists
                 $check_candidates = candidates::where('email', '=', $email)->first();
                 if ($check_candidates === null) {
-
                     candidates::insert([
                         'first_name' => $first_name,
                         'last_name' => $last_name,
                         'email' => $email,
-
                     ]);
-
                 }
 
             }
+
             fclose($handle);
         }
 
-        $csvFileName = "\csv\jobs.csv";
-        if (($handle = fopen(storage_path() . $csvFileName, 'r')) !== false) {
+        // End candidate csv
+
+        // Import jobs csv
+
+        $jobs_csv = "\csv\jobs.csv";
+        if (($handle = fopen(storage_path() . $jobs_csv, 'r')) !== false) {
             while (($data = fgetcsv($handle, 1000, ",")) !== false) {
                 $num = count($data);
-
                 $candidates_id = $data['1'];
                 $job_title = $data['2'];
                 $company_name = $data['3'];
@@ -92,6 +96,8 @@ class ImportCommand extends Command
             }
             fclose($handle);
         }
+
+      // End jobs csv
 
         foreach (Candidates::all() as $candidate) {
 
