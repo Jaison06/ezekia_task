@@ -7,3 +7,5 @@ To get started:
 4. Run `php artisan migrate`
 5. Run `php artisan import:command`
 
+
+Root folder can see the task screenshot
