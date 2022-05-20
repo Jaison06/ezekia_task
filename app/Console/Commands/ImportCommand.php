@@ -40,7 +40,7 @@ class ImportCommand extends Command
      */
     public function handle()
     {
-       // Import candidate csv
+        // Import candidate csv
 
         $candidate_csv = "\csv\candidates.csv";
         if (($handle = fopen(storage_path() . $candidate_csv, 'r')) !== false) {
@@ -97,23 +97,24 @@ class ImportCommand extends Command
             fclose($handle);
         }
 
-      // End jobs csv
+        // End jobs csv
 
         foreach (Candidates::all() as $candidate) {
 
             $candidates_id = $candidate->id;
 
-            echo "Name:" . $candidate->first_name . " " . $candidate->last_name . ",  " . "Email:" . $candidate->email . "\n\n";
+            echo "Name: " . $candidate->first_name . " " . $candidate->last_name . ",  " . "Email: " . $candidate->email . "\n\n";
 
             $jobs_list = Jobs::where('candidates_id', '=', $candidates_id)->orderBy('end_date', 'DESC')->get();
 
             foreach ($jobs_list as $jobs) {
 
-                echo "Job Title:" . $jobs->job_title . ", Company Name: " . $jobs->company_name . ",  " . "Start Date:" . $jobs->start_date . " " . "End Date:" . $jobs->end_date . "\n";
+                echo "Job Title: " . $jobs->job_title . ",  Company Name: " . $jobs->company_name . ",  " . "Start Date: " . $jobs->start_date . ",  " . "End Date: " . $jobs->end_date . "\n";
 
             }
 
             echo "\n\n";
+            echo "----------------------------------------------------\n\n";
 
         }
 
